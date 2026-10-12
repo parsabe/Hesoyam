@@ -2,6 +2,7 @@
 
 An authentic, fully hardware-accelerated deployment and development suite for **Grand Theft Auto: San Andreas (Persian Edition)** on **Debian / Kali Linux**, targeting modern **NVIDIA GeForce RTX 40-Series GPUs** and high-thread-count multi-core processors.
 
+<img src="https://github.com/parsabe/Hesoyam/blob/master/logo.png">
 ---
 
 ## Table of Contents
