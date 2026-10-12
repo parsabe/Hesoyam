@@ -185,43 +185,6 @@ The `dev/` directory provides complete reverse-engineering and modding tools bui
 
 ---
 
-## Repository Structure
 
-```
-├── GTA San Andreas Persian Edition Linux debian/  # Extracted game assets & configured runtime
-│   ├── gta_sa.exe                                # v1.0 US Retail executable (14,383,616 bytes)
-│   ├── vorbisFile.dll                            # Ultimate ASI Loader
-│   ├── scripts/                                  # GTASA.WidescreenFix.asi & .ini
-│   ├── anim/                                     # Animations (anim.img, ped.ifp)
-│   ├── audio/                                    # Persian dubbed speech, sound effects & radios
-│   ├── data/                                     # Collision, paths, decision trees, world data
-│   ├── models/                                   # 3D models & textures (gta3.img, player.img)
-│   ├── movies/                                   # Cinematics (intro logos bypassed)
-│   └── text/                                     # 16,588 localized lines (american.gxt)
-├── dev/                                          # 4-Tier Development Suite
-│   ├── tier1_graphics/                           # Vulkan DXVK configs & RTX HUD
-│   ├── tier2_plugins/                            # C++20 Plugin-SDK workspace & headers
-│   ├── tier3_content/                            # Python GXT and IMG tools + JSON databases
-│   └── tier4_native_engine/                      # Engine architecture blueprints
-├── windows str/                                  # Original Windows installer media (.cab, .msi, setup.exe)
-├── gta-sa-persian-edition_1.1.0_all.deb          # Official Debian/Kali package installer
-├── install_gta_sa_persian.sh                     # 1-Click automated system installer
-├── run_game.sh                                   # Direct game launcher script
-├── README.md                                     # Project documentation
-└── .gitignore                                    # Configured for GitHub 100MB file limits
-```
-
----
-
-## Pushing to GitHub
-
-This repository is pre-configured with a `.gitignore` that excludes large binary archives (`windows str/` and multi-gigabyte `.img` asset files) to comply with GitHub's 100 MB upload limit:
-
-```bash
-git init
-git add .
-git commit -m "feat: complete GTA San Andreas Persian Edition Linux port & development suite"
-git branch -M main
-git remote add origin <YOUR_GITHUB_REPO_URL>
-git push -u origin main
-```
+## Liscence
+This project is licensed under the [MIT License](LICENSE).
