@@ -20,6 +20,22 @@ fi
 echo "[1/3] Enabling 32-bit architecture..."
 dpkg --add-architecture i386
 
+# Auto-detect and link extracted game directory to /opt/gta-sa-persian
+REPO_DIR="$(dirname "${SCRIPT_DIR}")"
+GAME_CANDIDATE=""
+if [ -d "${REPO_DIR}/GTA San Andreas Persian Edition Linux debian" ]; then
+    GAME_CANDIDATE="${REPO_DIR}/GTA San Andreas Persian Edition Linux debian"
+elif [ -d "${REPO_DIR}/kernel" ]; then
+    GAME_CANDIDATE="${REPO_DIR}/kernel"
+elif [ -d "${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian" ]; then
+    GAME_CANDIDATE="${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian"
+fi
+
+if [ -n "${GAME_CANDIDATE}" ]; then
+    echo "[*] Setting up system link: /opt/gta-sa-persian -> ${GAME_CANDIDATE}"
+    ln -sfn "${GAME_CANDIDATE}" /opt/gta-sa-persian
+fi
+
 echo "[2/3] Installing Debian Package and dependencies..."
 apt update -qq
 apt install -y "${DEB_PACKAGE}"
