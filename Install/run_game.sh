@@ -11,7 +11,16 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-GAME_DIR="${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian"
+if [ -d "${SCRIPT_DIR}/../GTA San Andreas Persian Edition Linux debian" ]; then
+    GAME_DIR="${SCRIPT_DIR}/../GTA San Andreas Persian Edition Linux debian"
+elif [ -d "${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian" ]; then
+    GAME_DIR="${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian"
+elif [ -d "/opt/gta-sa-persian" ]; then
+    GAME_DIR="/opt/gta-sa-persian"
+else
+    GAME_DIR="${SCRIPT_DIR}/GTA San Andreas Persian Edition Linux debian"
+fi
+
 
 echo "======================================================================"
 echo " GTA San Andreas Persian Edition - Fullscreen Widescreen Launcher"

@@ -2,7 +2,13 @@
 kernel/
 kernel.zip
 *.zip
+*.z[0-9][0-9]
+*.z*
 GTA San Andreas Persian Edition Linux debian
+zi*
+*.tmp
+
+
 
 
 # Build artifacts

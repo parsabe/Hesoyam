@@ -120,13 +120,33 @@ The `.deb` package registers the game as a first-class Linux application:
 
 ## Installation & Quick Start
 
-### Method 1: 1-Click Automated Script (Recommended)
-Run the automated installer with `sudo`. It configures multiarch, installs dependencies, and deploys the Debian package in one step:
+### Step 1: Download Game Kernel Assets from GitHub Releases
+Because the complete authentic game kernel (voice acting, audio streams, 3D models, textures) exceeds GitHub's repository limits (~6.2 GB uncompressed), the game runtime assets are hosted in the **[GitHub Releases](https://github.com/parsabe/Hesoyam/releases)** section as 1 GB split zip archives (`kernel.z01`, `kernel.z02`, ..., `kernel.zip`).
+
+1. Go to **[Releases](https://github.com/parsabe/Hesoyam/releases)** and download **all** split release parts into the repository root directory:
+   - `kernel.z01`, `kernel.z02`, `kernel.z03`, `kernel.z04`, `kernel.z05`, `kernel.zip` (download all files)
+2. Extract the archive in the root directory:
+   ```bash
+   # Method A: Using 7-Zip (Recommended)
+   7z x kernel.zip
+
+   # Method B: Using zip/unzip
+   zip -s 0 kernel.zip --out kernel_complete.zip && unzip kernel_complete.zip
+   ```
+   *(This extracts the full `GTA San Andreas Persian Edition Linux debian/` directory with all assets and executables).*
+
+---
+
+### Step 2: System Installation
+
+#### Method 1: 1-Click Automated Script (Recommended)
+Run the automated installer inside the `Install/` folder with `sudo`. It enables the `i386` multiarch subsystem, installs graphics and runtime dependencies, and deploys the Debian integration package:
 ```bash
+cd Install
 sudo ./install_gta_sa_persian.sh
 ```
 
-### Method 2: Manual Step-by-Step Installation
+#### Method 2: Manual Step-by-Step Installation
 ```bash
 # 1. Enable 32-bit architecture
 sudo dpkg --add-architecture i386
@@ -136,10 +156,12 @@ sudo apt update
 sudo apt install -y wine wine32:i386 wine64 libvulkan1:i386 libgl1:i386 nvidia-driver-libs:i386
 
 # 3. Install the Debian package
-sudo apt install -y ./gta-sa-persian-edition_1.1.0_all.deb
+sudo apt install -y ./Install/gta-sa-persian-edition_1.1.0_all.deb
 ```
 
-### Launching the Game
+---
+
+### Step 3: Launching the Game
 - **From Application Menu:** `Applications -> Games -> GTA San Andreas Persian Edition`
 - **From Any Terminal:**
   ```bash
@@ -147,7 +169,7 @@ sudo apt install -y ./gta-sa-persian-edition_1.1.0_all.deb
   ```
 - **Direct Workspace Launcher:**
   ```bash
-  ./run_game.sh
+  ./Install/run_game.sh
   ```
 
 ---
@@ -186,5 +208,34 @@ The `dev/` directory provides complete reverse-engineering and modding tools bui
 ---
 
 
-## Liscence
+## Repository Structure
+
+```
+├── GTA San Andreas Persian Edition Linux debian/  # Extracted game assets & configured runtime (from Releases)
+│   ├── gta_sa.exe                                # v1.0 US Retail executable (14,383,616 bytes)
+│   ├── vorbisFile.dll                            # Ultimate ASI Loader
+│   ├── scripts/                                  # GTASA.WidescreenFix.asi & .ini
+│   ├── anim/                                     # Animations (anim.img, ped.ifp)
+│   ├── audio/                                    # Persian dubbed speech, sound effects & radios
+│   ├── data/                                     # Collision, paths, decision trees, world data
+│   ├── models/                                   # 3D models & textures (gta3.img, player.img)
+│   ├── movies/                                   # Cinematics (intro logos bypassed)
+│   └── text/                                     # 16,588 localized lines (american.gxt)
+├── dev/                                          # 4-Tier Development Suite
+│   ├── tier1_graphics/                           # Vulkan DXVK configs & RTX HUD
+│   ├── tier2_plugins/                            # C++20 Plugin-SDK workspace & headers
+│   ├── tier3_content/                            # Python GXT and IMG tools + JSON databases
+│   └── tier4_native_engine/                      # Engine architecture blueprints
+├── Install/                                      # Deployment & packaging
+│   ├── gta-sa-persian-edition_1.1.0_all.deb      # Official Debian/Kali package installer
+│   ├── install_gta_sa_persian.sh                 # 1-Click automated system installer
+│   └── run_game.sh                               # Direct game launcher script
+├── logo.png                                      # Project branding artwork
+├── README.md                                     # Project documentation
+└── .gitignore                                    # Configured for GitHub 100MB file limits
+```
+
+---
+
+## License
 This project is licensed under the [MIT License](LICENSE).
