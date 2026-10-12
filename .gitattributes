@@ -1,0 +1,49 @@
+# ==============================================================================
+# Git Attributes for GTA San Andreas Persian Edition Linux Suite
+# ==============================================================================
+
+# Default behavior: Automatic text normalization
+* text=auto
+
+# Linux Scripts (Force Unix LF line endings)
+*.sh        text eol=lf
+*.bash      text eol=lf
+*.py        text eol=lf
+
+# C++ & Source Files
+*.cpp       text eol=lf diff=cpp
+*.hpp       text eol=lf diff=cpp
+*.h         text eol=lf diff=cpp
+*.c         text eol=lf diff=cpp
+CMakeLists.txt text eol=lf
+
+# Documentation & Config
+*.md        text eol=lf
+*.ini       text eol=crlf
+*.conf      text eol=lf
+*.json      text eol=lf
+*.desktop   text eol=lf
+
+# Binary Game Assets & Executables (Never normalize or diff as text)
+*.exe       binary
+*.dll       binary
+*.asi       binary
+*.img       binary
+*.txd       binary
+*.dff       binary
+*.col       binary
+*.ifp       binary
+*.dat       binary
+*.gxt       binary
+*.cab       binary
+*.msi       binary
+*.deb       binary
+*.ico       binary
+*.png       binary
+*.jpg       binary
+*.mp3       binary
+*.mpg       binary
+
+# GitHub Linguist Overrides (Keep repository language bar accurate)
+dev/tier3_content/*.json linguist-generated=true
+dev/tier3_content/*.txt  linguist-generated=true

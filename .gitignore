@@ -1,0 +1,11 @@
+# Game archives & kernel binaries (exceeds GitHub file size limit)
+kernel/
+kernel.zip
+*.zip
+
+# Build artifacts
+*.o
+*.obj
+*.so
+plugin_test
+
